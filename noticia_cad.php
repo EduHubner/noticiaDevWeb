@@ -27,7 +27,7 @@ if ($id != 0)
     </header>
     <main class="container">
 
-        <form action="noticia_acao.php" method="post">
+        <form action="noticia_acao.php" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>Cadastro de Noticia</legend>
 
@@ -40,19 +40,22 @@ if ($id != 0)
 
                 <label for="resumo">Resumo</label>
                 <input type="text" name="resumo" id="resumo" value="<?php if ($id != 0)
-                    echo $dados['resumo']; ?>"><br>
+                    echo $dados['resumo']; ?>" required><br>
 
                 <label for="texto">Texto</label>
                 <input type="text" name="texto" id="texto" value="<?php if ($id != 0)
-                    echo $dados['texto']; ?>"><br>
+                    echo $dados['texto']; ?>" required><br>
 
                 <label for="autor">Autor</label>
                 <input type="text" name="autor" id="autor" value="<?php if ($id != 0)
-                    echo $dados['autor']; ?>"><br>
+                    echo $dados['autor']; ?>" required><br>
 
                 <label for="tags">Tags</label>
                 <input type="text" name="tags" id="tags" value="<?php if ($id != 0)
                     echo $dados['tags']; ?>"><br>  
+
+                <label for="imagem">Imagem da Noticia</label>
+                <input type="file" name="imagem" id="" ><br><br>
 
                 <button class="btn waves-effect waves-light" type="submit" name="acao" id="acao" value="<?php if ($id == 0)
                     echo "Salvar";

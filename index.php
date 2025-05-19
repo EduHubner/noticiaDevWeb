@@ -34,14 +34,14 @@
                 <div class='col s12 m4'>
                 <div class='card medium'>
                     <div class='card-image'>
-                    <img src='img/fff.jpg'>
-                    <span class='card-title'>{$key['titulo'] }</span>
+                    <img src='{$key['imagem']}'>
                     </div>
                     <div class='card-content'>
+                    <span class='card-title'>{$key['titulo'] }</span>
                     <p>{$key['resumo']}</p>
                     </div>
                     <div class='card-action'>
-                    <a href='#'>Ler Mais</a>
+                    <a href=noticia.php?id=" . $key['id'] . ">Ler Mais</a>
                     </div>
                 </div>
                 </div>

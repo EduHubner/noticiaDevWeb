@@ -41,13 +41,15 @@ switch ($acao) {
  */
 function tela2array()
 {
+
     $novo = array(
         'id' => isset($_POST['id']) ? $_POST['id'] : date("YmdHis"),
         'titulo' => isset($_POST['titulo']) ? $_POST['titulo'] : "",
         'resumo' => isset($_POST['resumo']) ? $_POST['resumo'] : "",
         'texto' => isset($_POST['texto']) ? $_POST['texto'] : "",
         'autor' => isset($_POST['autor']) ? $_POST['autor'] : "",
-        'tags' => isset($_POST['tags']) ? $_POST['tags'] : ""
+        'tags' => isset($_POST['tags']) ? $_POST['tags'] : "",
+        'imagem' => salvarImagem()
     );
     if ($novo['id'] == "0") {
         $novo['id'] = date("YmdHis");
@@ -67,6 +69,7 @@ function array2json($array_dados, $json_dados)
     $json_dados->texto = $array_dados['texto'];
     $json_dados->autor = $array_dados['autor'];
     $json_dados->tags = $array_dados['tags'];
+    $json_dados->imagem = $array_dados['imagem'];
 
     return $json_dados;
 }
@@ -92,7 +95,7 @@ function salvar_csv($dados, $arquivo)
  */
 function ler_csv($arquivo)
 {
-    $keys = ['id', 'titulo', 'resumo', 'texto', 'autor', 'tags'];
+    $keys = ['id', 'titulo', 'resumo', 'texto', 'autor', 'tags', 'imagem'];
     $fp = fopen($arquivo, "r");
     $dados = array();
     if ($fp) {
@@ -190,6 +193,49 @@ function salvar()
     salvar_csv($dados, ARQUIVO_CSV);
 
     header("location:" . DESTINO);
+}
+
+function salvarImagem() 
+{
+    $t=time();
+    $target_dir = "img/";
+    $target_file = $target_dir."".$t . basename($_FILES["imagem"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    $check = getimagesize($_FILES["imagem"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
+            echo "The file ". htmlspecialchars( basename( $_FILES["imagem"]["name"])).
+             " has been uploaded.";
+            return $target_file;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
 }
 
 ?>
