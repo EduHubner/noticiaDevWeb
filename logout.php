@@ -17,6 +17,8 @@
     }
     ?>
     <div class="container">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css">
         <form method="post" action="login_acao.php">
             <p>Deseja realmente deslogar da conta?</p>
             <input type="submit" name="acao" value="Logout"/>

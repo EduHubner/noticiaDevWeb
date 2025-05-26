@@ -67,11 +67,12 @@ if ($id != 0)
 
             </fieldset>
         </form>
-    </main>
-    <footer class="container"></footer>
 
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+        <?php 
+            include "footer.php";
+        ?>
+    </main>
+    
 </body>
 
 </html>

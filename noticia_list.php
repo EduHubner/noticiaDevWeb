@@ -47,6 +47,11 @@ require_once "noticia_acao.php";
               </tr>";
             ?>
         </table>
+
+
+        <?php 
+            include "footer.php";
+        ?>
     </main>
     <!-- funcao de confirmacacao em javascript para a exclusao-->
     <script>

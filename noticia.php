@@ -61,14 +61,17 @@ $navbar = "navbarnoticia";
                 <div class="row valign-wrapper">
                     <div class="col s12">
                     <span class="black-text">
-                        <h5>Autor: <?php echo $noticia['autor']; ?></h5>
-                        <h5>Tags: <?php echo $noticia['tags']; ?></h5>
+                        <h6>Autor: <?php echo $noticia['autor']; ?></h6>
+                        <h6>Tags: <?php echo $noticia['tags']; ?></h6>
                     </span>
                     </div>
                 </div>
                 </div>
             </div>
 
+            <?php 
+                include "footer.php";
+            ?>
        </div>
     </form>
 </body>
